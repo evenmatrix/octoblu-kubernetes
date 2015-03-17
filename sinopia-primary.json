@@ -1,0 +1,43 @@
+{
+  "id": "sinopia-primary-controller",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 1,
+    "replicaSelector": {"name": "sinopia-primary"},
+    "podTemplate": {
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "id": "sinopia-primary",
+          "containers": [{
+            "name": "sinopia-primary",
+            "image": "drewwells/sinopia",
+            "ports": [{"containerPort": 4873}],
+            "volumeMounts": [{
+              "name": "sinopia-config",
+              "mountPath": "/etc/sinopia"
+            }]
+          }],
+          "volumes": [
+            {
+              "name": "sinopia-config",
+              "source": {
+                "hostDir": {
+                  "path": "/data/sinopia"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "labels": {
+        "name": "sinopia-primary",
+        "app": "sinopia"
+      }
+    }
+  },
+  "labels": {
+    "name": "sinopia-primary"
+  }
+}

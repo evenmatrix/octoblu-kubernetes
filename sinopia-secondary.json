@@ -1,0 +1,28 @@
+{
+  "id": "sinopia-secondary-controller",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 2,
+    "replicaSelector": {"name": "sinopia-secondary"},
+    "podTemplate": {
+      "desiredState": {
+         "manifest": {
+           "version": "v1beta1",
+           "id": "sinopia-secondary",
+           "containers": [{
+             "name": "sinopia-secondary",
+             "image": "drewwells/sinopia",
+             "ports": [{"containerPort": 4873}]
+           }]
+         }
+      },
+      "labels": {
+        "name": "sinopia-secondary",
+        "uses": "sinopia-primary",
+        "app": "sinopia"
+      }
+    }
+  },
+  "labels": {"name": "sinopia-secondary"}
+}
