@@ -3,7 +3,7 @@
   "kind": "ReplicationController",
   "apiVersion": "v1beta1",
   "desiredState": {
-    "replicas": 1,
+    "replicas": 4,
     "replicaSelector": {"name": "sinopia"},
     "podTemplate": {
       "desiredState": {
@@ -14,17 +14,31 @@
             "name": "sinopia",
             "image": "drewwells/sinopia",
             "ports": [{"containerPort": 4873}],
-            "volumeMounts": [{
-              "name": "sinopia-config",
-              "mountPath": "/etc/sinopia"
-            }]
+            "volumeMounts": [
+              {
+                "name": "sinopia-config",
+                "mountPath": "/etc/sinopia"
+              },
+              {
+                "name": "sinopia-storage",
+                "mountPath": "/opt/sinopia/storage"
+              }
+            ]
           }],
           "volumes": [
             {
               "name": "sinopia-config",
               "source": {
                 "hostDir": {
-                  "path": "/data/sinopia"
+                  "path": "/data/sinopia/config"
+                }
+              }
+            },
+            {
+              "name": "sinopia-storage",
+              "source": {
+                "hostDir": {
+                  "path": "/data/sinopia/storage"
                 }
               }
             }
