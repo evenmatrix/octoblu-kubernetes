@@ -30,7 +30,7 @@
               "name": "sinopia-config",
               "source": {
                 "hostDir": {
-                  "path": "/data/sinopia/config"
+                  "path": "/data/read-only/sinopia"
                 }
               }
             },
@@ -38,7 +38,7 @@
               "name": "sinopia-storage",
               "source": {
                 "hostDir": {
-                  "path": "/data/sinopia/storage"
+                  "path": "/data/read-write/sinopia/storage"
                 }
               }
             }
