@@ -8,6 +8,7 @@ cache:
   - node_modules
 after_success:
   - mkdir -p dpl_cd_upload
+  - sed "s/\$TRAVIS_COMMIT/$TRAVIS_COMMIT/g" appspec.yml.tmpl > appspec.yml
   - zip -r dpl_cd_upload/octoblu-kubernetes.zip *
 deploy:
   - provider: s3
