@@ -1,11 +1,7 @@
-language: node_js
+language: bash
 sudo: false
-node_js:
-- '0.10'
-cache:
-  bundler: true
-  directories:
-  - node_modules
+script:
+  - bash -c "echo done"
 after_success:
   - mkdir -p dpl_cd_upload
   - sed "s/\$TRAVIS_COMMIT/$TRAVIS_COMMIT/g" appspec.yml.tmpl > appspec.yml
