@@ -21,5 +21,6 @@ deploy:
     bucket: octoblu-deploy
     key: octoblu-kubernetes/octoblu-kubernetes.zip
     bundle_type: zip
+    region: us-west-2
     application: octoblu-kubernetes
     deployment_group: kubernetes
