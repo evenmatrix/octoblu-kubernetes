@@ -1,0 +1,40 @@
+id: sinopia-controller-1.0.1
+kind: ReplicationController
+apiVersion: v1beta1
+labels: 
+  name: sinopia
+  version: 1.0.1
+desiredState: 
+  replicas: 4
+  replicaSelector: 
+    name: sinopia
+    version: 1.0.1
+  podTemplate: 
+    labels: 
+      name: sinopia
+      app: sinopia
+      version: 1.0.1
+    desiredState: 
+      manifest: 
+        version: v1beta1
+        id: sinopia
+        containers: 
+          - name: sinopia
+            image: octoblu/sinopia:latest
+            ports: 
+              - containerPort: 4873
+            volumeMounts: 
+              - name: sinopia-config
+                mountPath: /etc/sinopia
+              - name: sinopia-storage
+                mountPath: /opt/sinopia/storage
+        volumes: 
+          - name: sinopia-config
+            source: 
+              hostDir: 
+                path: /data/read-only/sinopia
+          - name: sinopia-storage
+            source: 
+              hostDir: 
+                path: /data/read-write/sinopia/storage
+

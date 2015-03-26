@@ -1,0 +1,28 @@
+language: node_js
+sudo: false
+node_js:
+- '0.10'
+cache:
+  bundler: true
+  directories:
+  - node_modules
+after_success:
+  - mkdir -p dpl_cd_upload
+  - zip -r dpl_cd_upload/octoblu-kubernetes.zip *
+deploy:
+  - provider: s3
+    access_key_id: AKIAIT4X4NDGM2WVL6VA
+    secret_access_key: &1
+      secure: HDESItAqOw9ZkPIl91GwtYhliXcq/7Q1jl7RlNqmOLZOWeaDQWJjDPCNTKqNofONw2OSfkJA6JDSSXzOG3B6lnKsxv89Zuwe396fK9zmilZ2k9vX4tWpN49GPaPhOYuBoVMGJd34gEZf7KoUK/69wuOuNdbdpakfTV3FzZyAw2M=
+    local_dir: dpl_cd_upload
+    skip_cleanup: true
+    bucket: octoblu-deploy
+    upload_dir: octoblu-kubernetes
+  - provider: codedeploy
+    access_key_id: AKIAIT4X4NDGM2WVL6VA
+    secret_access_key: *1
+    bucket: octoblu-deploy
+    key: octoblu-kubernetes/octoblu-kubernetes.zip
+    bundle_type: zip
+    application: octoblu-kubernetes
+    deployment_group: kubernetes
