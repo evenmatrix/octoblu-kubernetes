@@ -1,7 +1,7 @@
-id: admin-analytics-1.0.0
+id: admin-analytics-green
 kind: Service
 apiVersion: v1beta1
-port: 8000
+port: 8001
 containerPort: 8888
 publicIPs: 
   - 172.20.0.10
@@ -9,7 +9,7 @@ publicIPs:
   - 172.20.0.12
   - 172.20.0.13
 labels: 
-  name: admin-analytics
+  name: admin-analytics-green
   version: 1.0.0
 selector: 
-  name: admin-analytics
+  name: admin-analytics-green

@@ -1,0 +1,15 @@
+id: admin-analytics-blue
+kind: Service
+apiVersion: v1beta1
+port: 8000
+containerPort: 8888
+publicIPs: 
+  - 172.20.0.10
+  - 172.20.0.11
+  - 172.20.0.12
+  - 172.20.0.13
+labels: 
+  name: admin-analytics-blue
+  version: 1.0.0
+selector: 
+  name: admin-analytics-blue

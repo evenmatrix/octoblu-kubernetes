@@ -1,26 +1,26 @@
-id: admin-analytics-controller-1.0.0
+id: admin-analytics-green-controller
 kind: ReplicationController
 apiVersion: v1beta1
 labels: 
-  name: admin-analytics
+  name: admin-analytics-green
   version: 1.0.0
 desiredState: 
   replicas: 2
   replicaSelector:
-    name: admin-analytics
+    name: admin-analytics-green
     version: 1.0.0
   podTemplate:
     labels:
-      name: admin-analytics
-      app: admin-analytics
+      name: admin-analytics-green
+      app: admin-analytics-green
       version: 1.0.0
     desiredState: 
       manifest: 
         version: v1beta1
-        id: admin-analytics
+        id: admin-analytics-green
         containers: 
-          - name: admin-analytics
-            image: octoblu/admin-analytics:v2
+          - name: admin-analytics-green
+            image: octoblu/admin-analytics
             ports: 
               - containerPort: 8888
 

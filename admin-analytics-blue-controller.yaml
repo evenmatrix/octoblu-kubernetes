@@ -1,0 +1,26 @@
+id: admin-analytics-blue-controller
+kind: ReplicationController
+apiVersion: v1beta1
+labels: 
+  name: admin-analytics-blue
+  version: 1.0.0
+desiredState: 
+  replicas: 2
+  replicaSelector:
+    name: admin-analytics-blue
+    version: 1.0.0
+  podTemplate:
+    labels:
+      name: admin-analytics-blue
+      app: admin-analytics-blue
+      version: 1.0.0
+    desiredState: 
+      manifest: 
+        version: v1beta1
+        id: admin-analytics-blue
+        containers: 
+          - name: admin-analytics-blue
+            image: octoblu/admin-analytics
+            ports: 
+              - containerPort: 8888
+
