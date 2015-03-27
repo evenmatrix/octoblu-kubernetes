@@ -5,7 +5,7 @@ script:
 after_success:
   - mkdir -p dpl_cd_upload
   - sed "s/\$TRAVIS_COMMIT/$TRAVIS_COMMIT/g" appspec.yml.tmpl > appspec.yml
-  - zip -r dpl_cd_upload/octoblu-kubernetes.zip *
+  - zip -r dpl_cd_upload/octoblu-kubernetes-$TRAVIS_COMMIT.zip *
 deploy:
   - provider: s3
     access_key_id: AKIAIT4X4NDGM2WVL6VA
@@ -19,7 +19,7 @@ deploy:
     access_key_id: AKIAIT4X4NDGM2WVL6VA
     secret_access_key: *1
     bucket: octoblu-deploy
-    key: octoblu-kubernetes/octoblu-kubernetes.zip
+    key: octoblu-kubernetes/octoblu-kubernetes-$TRAVIS_COMMIT.zip
     bundle_type: zip
     region: us-west-2
     application: octoblu-kubernetes
