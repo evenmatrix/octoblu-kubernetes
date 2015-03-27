@@ -1,4 +1,4 @@
-id: octoblu-oauth-provider-1.0.0
+id: octoblu-oauth-provider
 kind: Service
 apiVersion: v1beta1
 port: 9000
